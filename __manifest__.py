@@ -1,0 +1,16 @@
+{
+    "name": "State Change Registry",
+    "version": "18.0.1.0.0",
+    "summary": "Registro base de cambios de estado en documentos",
+    "description": "Modulo base para registrar cambios de estado en documentos de negocio.",
+    "author": "Prueba Tecnica",
+    "license": "LGPL-3",
+    "category": "Tools",
+    "depends": ["base"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/state_change_registry_views.xml",
+    ],
+    "installable": True,
+    "application": False,
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_state_change_registry_list" model="ir.ui.view">
+        <field name="name">state.change.registry.list</field>
+        <field name="model">state.change.registry</field>
+        <field name="arch" type="xml">
+            <list string="State Change Registry">
+                <field name="change_date"/>
+                <field name="document_type"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="amount"/>
+                <field name="line_count"/>
+                <field name="company_id"/>
+                <field name="previous_state"/>
+                <field name="new_state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_state_change_registry_form" model="ir.ui.view">
+        <field name="name">state.change.registry.form</field>
+        <field name="model">state.change.registry</field>
+        <field name="arch" type="xml">
+            <form string="State Change Registry">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="document_type"/>
+                            <field name="change_date"/>
+                            <field name="user_id"/>
+                            <field name="company_id"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="line_count"/>
+                            <field name="previous_state"/>
+                            <field name="new_state"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="tax_summary" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_state_change_registry" model="ir.actions.act_window">
+        <field name="name">State Change Registry</field>
+        <field name="res_model">state.change.registry</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_state_change_registry_root"
+        name="State Change Registry"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_state_change_registry"
+        name="Registros"
+        parent="menu_state_change_registry_root"
+        action="action_state_change_registry"
+        sequence="10"
+    />
+</odoo>
