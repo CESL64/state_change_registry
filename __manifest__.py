@@ -10,6 +10,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/state_change_registry_views.xml",
+        "views/res_partner_views.xml",
     ],
     "installable": True,
     "application": False,
