@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_state_change_registry_record" model="report.paperformat">
+        <field name="name">Detalle de registro de cambio de estado</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">12</field>
+        <field name="margin_right">12</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_state_change_registry_record_report" model="ir.actions.report">
+        <field name="name">00 - Detalle de registro de cambio</field>
+        <field name="model">state.change.registry</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">state_change_registry.state_change_registry_record_template</field>
+        <field name="report_file">state_change_registry.state_change_registry_record_template</field>
+        <field name="binding_model_id" ref="state_change_registry.model_state_change_registry"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="state_change_registry.paperformat_state_change_registry_record"/>
+        <field name="print_report_name">'Detalle de registro - %s' % (object.name or object.id)</field>
+    </record>
+
+    <template id="state_change_registry_record_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <style>
+                            .state-change-detail-table th,
+                            .state-change-detail-table td {
+                                padding: 8px !important;
+                            }
+                        </style>
+                        <h3 class="text-center fw-bold">DETALLE DE REGISTRO DE CAMBIO DE ESTADO</h3>
+                        <table class="table table-sm table-bordered mt-3 state-change-detail-table">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 35%;">Nombre</th>
+                                    <td><span t-field="o.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Tipo de documento</th>
+                                    <td><span t-field="o.document_type"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <td><span t-field="o.change_date"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <td><span t-field="o.user_id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Estado previo</th>
+                                    <td><span t-field="o.previous_state"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Estado nuevo</th>
+                                    <td><span t-field="o.new_state"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Monto</th>
+                                    <td><span t-field="o.amount"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Cantidad de lineas</th>
+                                    <td><span t-field="o.line_count"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Impuestos</th>
+                                    <td><span t-field="o.tax_summary"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Compania</th>
+                                    <td><span t-field="o.company_id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Correo enviado</th>
+                                    <td><span t-field="o.mail_sent"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
