@@ -79,6 +79,7 @@
     <menuitem
         id="menu_state_change_registry_root"
         name="State Change Registry"
+        web_icon="state_change_registry,static/description/icon.png"
         sequence="10"
     />
 
