@@ -11,10 +11,31 @@
                 <field name="user_id"/>
                 <field name="amount"/>
                 <field name="line_count"/>
+                <field name="mail_sent"/>
                 <field name="company_id"/>
                 <field name="previous_state"/>
                 <field name="new_state"/>
             </list>
+        </field>
+    </record>
+
+    <record id="view_state_change_registry_search" model="ir.ui.view">
+        <field name="name">state.change.registry.search</field>
+        <field name="model">state.change.registry</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Registros de Cambio">
+                <field name="name"/>
+                <field name="document_type"/>
+                <field name="user_id"/>
+                <field name="change_date"/>
+                <filter name="filter_mail_sent" string="Correo enviado" domain="[('mail_sent', '=', True)]"/>
+                <filter name="filter_mail_not_sent" string="Correo pendiente" domain="[('mail_sent', '=', False)]"/>
+                <separator/>
+                <filter name="group_by_name" string="Nombre" context="{'group_by': 'name'}"/>
+                <filter name="group_by_document_type" string="Tipo documento" context="{'group_by': 'document_type'}"/>
+                <filter name="group_by_user" string="Usuario" context="{'group_by': 'user_id'}"/>
+                <filter name="group_by_change_date" string="Fecha" context="{'group_by': 'change_date:day'}"/>
+            </search>
         </field>
     </record>
 
@@ -26,21 +47,22 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="document_type"/>
-                            <field name="change_date"/>
-                            <field name="user_id"/>
-                            <field name="company_id"/>
+                            <field name="name" readonly="1"/>
+                            <field name="document_type" readonly="1"/>
+                            <field name="change_date" readonly="1"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="company_id" readonly="1"/>
                         </group>
                         <group>
-                            <field name="amount"/>
-                            <field name="line_count"/>
-                            <field name="previous_state"/>
-                            <field name="new_state"/>
+                            <field name="amount" readonly="1"/>
+                            <field name="line_count" readonly="1"/>
+                            <field name="previous_state" readonly="1"/>
+                            <field name="new_state" readonly="1"/>
+                            <field name="mail_sent" readonly="1"/>
                         </group>
                     </group>
                     <group>
-                        <field name="tax_summary" widget="text"/>
+                        <field name="tax_summary" widget="text" readonly="1"/>
                     </group>
                 </sheet>
             </form>
@@ -51,6 +73,7 @@
         <field name="name">State Change Registry</field>
         <field name="res_model">state.change.registry</field>
         <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_state_change_registry_search"/>
     </record>
 
     <menuitem

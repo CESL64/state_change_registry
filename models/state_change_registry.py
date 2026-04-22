@@ -46,3 +46,8 @@ class StateChangeRegistry(models.Model):
     )
     previous_state = fields.Char(string="Estado previo")
     new_state = fields.Char(string="Estado nuevo")
+    mail_sent = fields.Boolean(string="Correo enviado", default=False)
+
+    def _send_state_change_notification(self):
+        """Hook base para que modulos dependientes implementen envio de correo."""
+        return
