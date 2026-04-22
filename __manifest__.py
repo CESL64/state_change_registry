@@ -6,7 +6,7 @@
     "author": "Prueba Tecnica",
     "license": "LGPL-3",
     "category": "Tools",
-    "depends": ["base"],
+    "depends": ["base", "mail"],
     "data": [
         "security/ir.model.access.csv",
         "security/state_change_registry_rules.xml",

@@ -3,6 +3,7 @@ from odoo import fields, models
 
 class StateChangeRegistry(models.Model):
     _name = "state.change.registry"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "State Change Registry"
     _order = "change_date desc, id desc"
 
@@ -48,6 +49,6 @@ class StateChangeRegistry(models.Model):
     new_state = fields.Char(string="Estado nuevo")
     mail_sent = fields.Boolean(string="Correo enviado", default=False)
 
-    def _send_state_change_notification(self):
+    def send_state_change_notification(self):
         """Hook base para que modulos dependientes implementen envio de correo."""
         return
