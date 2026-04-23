@@ -10,6 +10,7 @@
     "data": [
         "security/ir.model.access.csv",
         "security/state_change_registry_rules.xml",
+        "data/state_change_registry_cron.xml",
         "views/state_change_registry_views.xml",
         "views/res_partner_views.xml",
         "reports/state_change_registry_record_report.xml",

@@ -1,4 +1,8 @@
-from odoo import fields, models
+import logging
+
+from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class StateChangeRegistry(models.Model):
@@ -52,3 +56,15 @@ class StateChangeRegistry(models.Model):
     def send_state_change_notification(self):
         """Hook base para que modulos dependientes implementen envio de correo."""
         return
+
+    @api.model
+    def cron_send_pending_state_change_notifications(self):
+        pending_records = self.search([("mail_sent", "=", False)])
+        for record in pending_records:
+            try:
+                record.send_state_change_notification()
+            except Exception:
+                _logger.exception(
+                    "Error enviando notificacion de cambio de estado para registro ID %s",
+                    record.id,
+                )
