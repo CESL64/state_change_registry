@@ -3,7 +3,7 @@
     "version": "18.0.1.0.0",
     "summary": "Registro base de cambios de estado en documentos",
     "description": "Modulo base para registrar cambios de estado en documentos de negocio.",
-    "author": "Prueba Tecnica",
+    "author": "Carlos Eduardo Salinas Honduras",
     "license": "LGPL-3",
     "category": "Tools",
     "depends": ["base", "mail"],
